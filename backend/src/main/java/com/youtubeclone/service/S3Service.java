@@ -27,7 +27,7 @@ public class S3Service implements FileService {
     @Override
     public String uploadFile(MultipartFile file) {
         String filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
-        String key = UUID.randomUUID().toString() + filenameExtension;
+        String key = UUID.randomUUID().toString() + "." + filenameExtension;
 
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.getSize());
