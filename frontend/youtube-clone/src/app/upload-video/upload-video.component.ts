@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {NgxFileDropEntry} from "ngx-file-drop";
-import {VideoService} from "../video.service";
+import {VideoService} from "../services/video.service";
 
 @Component({
   selector: 'app-upload-video',
