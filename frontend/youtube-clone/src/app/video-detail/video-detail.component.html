@@ -1,0 +1,18 @@
+<div fxLayout="row">
+  <div fxFlex="65%" class="video-detail">
+    <app-video-player [videoUrl]="videoDto.videoUrl"></app-video-player>
+    <div class="mat-title">{{videoDto.title}}</div>
+    <div fxLayout="row">
+      <div fxFlex="50%"></div>
+        <span>3rd Feb 2024</span>
+        <span>{{videoDto.description}}</span>
+      <div fxFlex="50%"></div>
+    </div>
+
+  </div>
+  <div fxFlex="5%"></div>
+  <div fxFlex="30%">
+
+  </div>
+</div>
+
