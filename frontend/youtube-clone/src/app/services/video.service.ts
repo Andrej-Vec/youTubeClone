@@ -30,13 +30,15 @@ export class VideoService {
   }
 
   public getVideoId(videoId: string): Observable<VideoDto> {
-    //return of("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-    return of({"id": "45", "title": "title", "description": "description", "tags": [], "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "videoStatus": "videoStatus", "thumbnailUrl": "thumbnailUrl"});
-    //return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
+     return this.httpClient.get<VideoDto>("http://localhost:8080/api/videos/" + videoId);
   }
 
 
   saveVideo(videoMetaData: VideoDto): Observable<VideoDto> {
     return this.httpClient.put<VideoDto>("http://localhost:8080/api/videos", videoMetaData)
+  }
+
+  public getAllvideos(): Observable<VideoDto[]> {
+      return this.httpClient.get<VideoDto[]>("http://localhost:8080/api/all/videos/");
   }
 }

@@ -1,0 +1,9 @@
+<div fxLayout="row wrap">
+  <h3>Featched Videos</h3>
+</div>
+<div *ngIf="$featuredVideos | async as featuredVideos" fxLayout="row wrap" fxLayoutGap="12px grid">
+  <div *ngFor="let featuredVideo of featuredVideos">
+    <app-video-card [videoDto]="featuredVideo"></app-video-card>
+  </div>
+</div>
+
