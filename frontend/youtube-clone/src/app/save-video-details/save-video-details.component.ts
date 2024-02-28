@@ -6,6 +6,7 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {ActivatedRoute} from "@angular/router";
 import {VideoService} from "../services/video.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {VideoDto} from "../models/videoDto";
 
 @Component({
   selector: 'app-save-video-details',
@@ -26,6 +27,7 @@ export class SaveVideoDetailsComponent implements OnInit{
   tags: string[] = [];
   addOnBlur = true;
   videoUrl: string = "";
+  thumbnailUrl: string = "";
   saveDetailVideoForm: FormGroup = new FormGroup({});
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
@@ -33,7 +35,6 @@ export class SaveVideoDetailsComponent implements OnInit{
   ngOnInit() {
     this.videoId = this.activatedRoute.snapshot.params?.['videoId'];
     this.videoService.getVideoId(this.videoId).subscribe(resp => {
-      console.log("resp", resp);
       this.videoUrl = resp;
     });
     this.initForm();
@@ -91,6 +92,21 @@ export class SaveVideoDetailsComponent implements OnInit{
   public onUpload(): void {
     this.videoService.uploadThumbnail(this.selectedFile, this.videoId).subscribe(resp => {
       this.snackBar.open("thubnail spload successful", "OK");
+    });
+  }
+
+  public saveVideo(): void {
+    const videoMetaData: VideoDto = {
+      id: this.videoId,
+      title: this.saveDetailVideoForm.get("title")?.value,
+      description: this.saveDetailVideoForm.get("description")?.value,
+      tags: this.tags,
+      videoUrl: this.videoUrl,
+      videoStatus: this.saveDetailVideoForm.get("videoStatus")?.value,
+      thumbnailUrl: this.thumbnailUrl
+    }
+    this.videoService.saveVideo(videoMetaData).subscribe(resp => {
+      this.snackBar.open("Update videoUrl successfully", "OK");
     });
   }
 }
