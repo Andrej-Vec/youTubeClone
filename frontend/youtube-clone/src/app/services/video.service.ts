@@ -30,8 +30,7 @@ export class VideoService {
   }
 
   public getVideoId(videoId: string): Observable<string> {
-    //return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
-    return of("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+    return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
   }
 
 
