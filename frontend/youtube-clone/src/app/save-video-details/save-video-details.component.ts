@@ -13,7 +13,7 @@ import {VideoDto} from "../models/videoDto";
   templateUrl: './save-video-details.component.html',
   styleUrls: ['./save-video-details.component.scss']
 })
-export class SaveVideoDetailsComponent implements OnInit{
+export class SaveVideoDetailsComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly announcer = inject(LiveAnnouncer);
@@ -35,7 +35,8 @@ export class SaveVideoDetailsComponent implements OnInit{
   ngOnInit() {
     this.videoId = this.activatedRoute.snapshot.params?.['videoId'];
     this.videoService.getVideoId(this.videoId).subscribe(resp => {
-      this.videoUrl = resp;
+      console.log("resp", resp);
+      this.videoUrl = resp.videoUrl;
     });
     this.initForm();
   }

@@ -29,8 +29,10 @@ export class VideoService {
     });
   }
 
-  public getVideoId(videoId: string): Observable<string> {
-    return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
+  public getVideoId(videoId: string): Observable<VideoDto> {
+    //return of("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+    return of({"id": "45", "title": "title", "description": "description", "tags": [], "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "videoStatus": "videoStatus", "thumbnailUrl": "thumbnailUrl"});
+    //return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
   }
 
 
