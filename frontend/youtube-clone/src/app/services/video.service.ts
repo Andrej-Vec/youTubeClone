@@ -1,7 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {UploadVideoResponse} from "../models/uploadVideoResponse";
+import {VideoDto} from "../models/videoDto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,10 @@ export class VideoService {
     });
   }
 
+  public getVideoId(videoId: string): Observable<string> {
+    //return this.httpClient.get<string>("http://localhost:8080/api/videos/" + videoId);
+    return of("https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+
+  }
 
 }

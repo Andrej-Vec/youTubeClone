@@ -25,12 +25,17 @@ export class SaveVideoDetailsComponent implements OnInit{
   videoId: string = "";
   tags: string[] = [];
   addOnBlur = true;
+  videoUrl: string = "";
   saveDetailVideoForm: FormGroup = new FormGroup({});
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
 
   ngOnInit() {
     this.videoId = this.activatedRoute.snapshot.params?.['videoId'];
+    this.videoService.getVideoId(this.videoId).subscribe(resp => {
+      console.log("resp", resp);
+      this.videoUrl = resp;
+    });
     this.initForm();
   }
 
